@@ -1,11 +1,13 @@
+FROM maven:3.8.6-openjdk-11 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-FROM openjdk:11
-ARG PROJECT_VERSION=0.1.0
-RUN mkdir -p /home/app
-WORKDIR /home/app
-ENV SPRING_PROFILES_ACTIVE dev
-COPY proxy-client/ .
-ADD proxy-client/target/proxy-client-v${PROJECT_VERSION}.jar proxy-client.jar
+FROM openjdk:11-jre-slim
+WORKDIR /app
+COPY --from=build /app/target/proxy-client-*.jar proxy-client.jar
+ENV SPRING_PROFILES_ACTIVE=dev
 EXPOSE 8900
 ENTRYPOINT ["java", "-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}", "-jar", "proxy-client.jar"]
 
