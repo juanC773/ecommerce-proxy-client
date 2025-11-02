@@ -1,17 +1,17 @@
 # Proxy Client (Frontend Application)
 
-## 📋 Descripción
+##  Descripción
 
 Proxy Client es una **aplicación web frontend** que actúa como cliente para consumir los microservicios backend. Está construida con **Spring Boot**, **Thymeleaf** (para renderizado de páginas HTML) y **OpenFeign** (para comunicación REST con los microservicios).
 
-## 🎯 Propósito
+##  Propósito
 
 - **Interfaz Web**: Proporciona una interfaz de usuario web (páginas HTML)
 - **Orquestación**: Combina llamadas a múltiples microservicios para operaciones complejas
 - **Autenticación**: Maneja autenticación JWT y sesiones de usuario
 - **Capa de Presentación**: Renderiza vistas usando Thymeleaf templates
 
-## 🏗️ Arquitectura
+##  Arquitectura
 
 ```
 ┌─────────────┐
@@ -32,7 +32,7 @@ Proxy Client es una **aplicación web frontend** que actúa como cliente para co
        └──────────────────────────────────────┘
 ```
 
-## ⚙️ Configuración
+##  Configuración
 
 ### Context Path
 - **Context Path**: `/app`
@@ -62,7 +62,7 @@ El Proxy Client usa OpenFeign para comunicarse con los microservicios:
 - **UserClientService**: Comunicación con User Service
 - **PaymentClientService**: Comunicación con Payment Service
 
-## 🔗 Integración con Microservicios
+##  Integración con Microservicios
 
 El Proxy Client usa Eureka para descubrir servicios y luego hace llamadas directas usando OpenFeign:
 
@@ -76,7 +76,7 @@ public interface ProductClientService {
 
 Eureka resuelve `PRODUCT-SERVICE` a la URL real del servicio.
 
-## 🎨 Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 - **Spring Boot**: Framework de la aplicación
 - **Thymeleaf**: Motor de plantillas para renderizar HTML
@@ -85,7 +85,7 @@ Eureka resuelve `PRODUCT-SERVICE` a la URL real del servicio.
 - **JWT**: Tokens para autenticación
 - **Spring Cloud Eureka Client**: Descubrimiento de servicios
 
-## 🚀 Despliegue
+##  Despliegue
 
 ### Desarrollo Local
 
@@ -108,7 +108,7 @@ El servicio se despliega automáticamente mediante el pipeline CI/CD en el names
 
 **Tipo de Servicio**: `ClusterIP` (interno, accesible a través de API Gateway)
 
-## 📝 Notas Importantes
+## Notas Importantes
 
 ### Diferencia con API Gateway
 
@@ -161,19 +161,8 @@ Directo (desde dentro del cluster):
 http://proxy-client.ecommerce-dev.svc.cluster.local:8900/app/...
 ```
 
-## 🧪 Testing
+##  Testing
 
 Este servicio tiene un intento de pruebas unitarias pero puede ejecutarse sin ellas (configurado con `|| true` en el pipeline).
 
 Las pruebas E2E del frontend se pueden hacer manualmente accediendo a las páginas web renderizadas.
-
-## 📚 Referencias
-
-- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
-- [Thymeleaf Documentation](https://www.thymeleaf.org/documentation.html)
-- [Spring Cloud OpenFeign](https://spring.io/projects/spring-cloud-openfeign)
-- [Spring Security JWT](https://spring.io/projects/spring-security)
-
----
-
-**Estado**: ✅ Servicio de Infraestructura - Estable y Documentado
